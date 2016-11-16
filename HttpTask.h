@@ -3,33 +3,22 @@
 #include <iostream>
 #include <string>
 #include "Task.h"
-struct Request {
-    std::string method;
-    std::string strUrl;
-    std::string body ;
-};
+#include "HttpClient.h"
 
-struct Response {
-    long statusCode;
-    std::string& context;
-};
-
-typedef void (*handler_t)(Request* req, Response* resp);
+typedef void (*handler_t)(HttpRequest& req, HttpResponse& resp);
 
 
 class HttpTask: public CTask
 {
 public:
-    HttpTask (Request*, Response*, handler_t );
+    HttpTask (HttpRequest& req, HttpResponse& resp, handler_t h);
     virtual ~HttpTask ();
     virtual void run();
 
 private:
-    Request *m_http_req;
-    Response *m_http_resp;
+    HttpRequest m_http_req;
+    HttpResponse m_http_resp;
     handler_t m_handler;
 };
-
-
 
 #endif

@@ -2,6 +2,14 @@
 #include "curl/curl.h"
 #include <string>
 
+
+HttpRequest::HttpRequest(const std::string& method, const std::string& url, const std::string& body)
+{
+    m_method = method;
+    m_url = url;
+    m_body = body;
+}
+
 CHttpClient::CHttpClient(void) : 
 m_bDebug(false)
 {

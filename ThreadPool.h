@@ -7,10 +7,10 @@
 
 #ifndef THREADPOOL_H_
 #define THREADPOOL_H_
-#include "ostype.h"
 #include "Thread.h"
 #include "Task.h"
 #include <pthread.h>
+#include <inttypes.h>
 #include <list>
 using namespace std;
 

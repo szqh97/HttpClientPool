@@ -6,6 +6,7 @@
  */
 
 #include <stdlib.h>
+#include <iostream>
 #include "util.h"
 #include "ThreadPool.h"
 
@@ -45,10 +46,12 @@ void CWorkerThread::Execute()
 		}
 
 		CTask* pTask = m_task_list.front();
+
 		m_task_list.pop_front();
 		m_thread_notify.Unlock();
 
 		pTask->run();
+        std::cout << "KKKKKK" << std::endl;
 
 		delete pTask;
 
