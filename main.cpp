@@ -24,8 +24,8 @@ void httpAsyncRequest(HttpRequest& req, HttpResponse& resp)
 int main()
 { 
  
-    HttpClientPool *pool =  new HttpClientPool();
-    pool->Init(8);
+    g_thread_num = 4;
+    HttpClientPool *pool =  HttpClientPool::GetHttpClientPool();
    
     curl_global_init(CURL_GLOBAL_ALL);
     for (int i = 0; i < 22; i++) {

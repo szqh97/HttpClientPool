@@ -1,5 +1,7 @@
 #include "HttpClientPool.h"
 
+HttpClientPool* HttpClientPool::pHttpClintPool = NULL;
+
 HttpClientPool::HttpClientPool()
 {
     m_thread_num = 0;
@@ -30,4 +32,22 @@ HttpClientPool::~HttpClientPool()
 void HttpClientPool::AddTask(CTask *task)
 {
     m_thread_pool->AddTask(task);
+}
+
+HttpClientPool* HttpClientPool::GetHttpClientPool()
+{
+    if (pHttpClintPool == NULL) {
+        pHttpClintPool = new HttpClientPool();
+        pHttpClintPool->Init(g_thread_num);
+    }
+    return pHttpClintPool;
+}
+
+void HttpClientPool::Destory()
+{
+    if (pHttpClintPool)
+    {
+        delete pHttpClintPool;
+        pHttpClintPool =  NULL;
+    }
 }
